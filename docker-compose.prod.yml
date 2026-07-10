@@ -1,0 +1,7 @@
+services:
+  node-prod:
+    build:
+      context: .
+      target: prod
+    ports:
+      - '3030:3000'

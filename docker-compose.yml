@@ -1,0 +1,23 @@
+services:
+  node-dev:
+    build:
+      context: .
+      target: dev
+    ports:
+      - '3030:3000'
+    volumes:
+      - ./src:/app/src:ro
+      # - /app/node_modules
+    # command: inotifywait -m ./src
+    develop:
+      watch:
+        - path: ./Dockerfile
+          action: rebuild
+
+        - path: ./package-lock.json
+          action: rebuild
+
+        # - path: ./src
+        #   action: sync+restart
+        #   target: /app/src
+        #   initial_sync: true
