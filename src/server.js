@@ -6,6 +6,6 @@ const server = http.createServer((req, res) => {
   res.end('q-' + ms(172800000))
 })
 
-server.listen(3000, '0.0.0.0', () => {
+server.listen(8181, '0.0.0.0', () => {
   console.log('Сервер запущен на http://localhost:3000')
 })

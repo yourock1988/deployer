@@ -23,8 +23,10 @@ jobs:
             set -e
             whoami
             touch yahoo.txt
-            # cd /path/to/your/project
-            # git pull origin main
-            # npm install
-
+            cd app
+            git pull
+            npm ci
+            npm build
+            npm prune --omit=dev
+            npm start
             echo "Деплой успешно завершён!"
