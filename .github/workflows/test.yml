@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - run: echo ${{ variables.TEST_VAR }}
-      - run: echo ${{ secretes.TEST_SECRET }}
+      - run: echo ${{ vars.TEST_VAR }}
+      - run: echo ${{ secrets.TEST_SECRET }}
       - run: npm ci
       - run: npm test
