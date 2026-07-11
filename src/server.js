@@ -3,7 +3,7 @@ import ms from 'ms'
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' })
-  res.end('q-' + ms(172800000))
+  res.end('q-' + ms(Math.trunc(Math.random() * 100000000)))
 })
 
 const PORT = 8181
