@@ -22,7 +22,7 @@ jobs:
             #!/usr/bin/env bash -l
             export PATH=/home/postal404/.nvm/versions/node/v22.11.0/bin:$PATH
             set -e
-            kill $(lsof -t -i :8181)
+            kill $(lsof -t -i :8181) || true
             cd app
             git pull
             npm ci
