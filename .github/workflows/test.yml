@@ -28,5 +28,5 @@ jobs:
             npm ci
             npm run build
             npm prune --omit=dev
-            npm start
+            npm start > app.log 2>&1 & disown
             echo "Деплой успешно завершён!"
