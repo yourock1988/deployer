@@ -6,6 +6,8 @@ const server = http.createServer((req, res) => {
   res.end('q-' + ms(172800000))
 })
 
+const PORT = 8181
+
 server.listen(8181, '0.0.0.0', () => {
-  console.log('Сервер запущен на http://localhost:3000')
+  console.log(`Сервер запущен на http://0.0.0.0:${PORT}`)
 })
