@@ -1,12 +1,11 @@
 name: test
-on: push
+on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout код
-        uses: actions/checkout@v4
-      - name: Установка зависимостей
-        run: npm ci
-      - name: Тест проекта
-        run: npm test
+      - uses: actions/checkout@v7
+      - run: echo ${{ variables.TEST_VAR }}
+      - run: echo ${{ secretes.TEST_SECRET }}
+      - run: npm ci
+      - run: npm test
