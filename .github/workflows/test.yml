@@ -19,14 +19,14 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            #!/usr/bin/env bash
+            #!/usr/bin/env bash -l
             set -e
             whoami
             touch yahoo.txt
             cd app
             git pull
-            /usr/bin/env npm ci
-            /usr/bin/env npm run build
-            /usr/bin/env npm prune --omit=dev
-            /usr/bin/env npm start
+            npm ci
+            npm run build
+            npm prune --omit=dev
+            npm start
             echo "Деплой успешно завершён!"
