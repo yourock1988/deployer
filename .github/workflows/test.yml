@@ -25,8 +25,8 @@ jobs:
             touch yahoo.txt
             cd app
             git pull
-            npm ci
-            npm run build
-            npm prune --omit=dev
-            npm start
+            /usr/bin/env npm ci
+            /usr/bin/env npm run build
+            /usr/bin/env npm prune --omit=dev
+            /usr/bin/env npm start
             echo "Деплой успешно завершён!"
