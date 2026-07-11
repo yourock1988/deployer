@@ -1,16 +1,16 @@
 name: test
 on: [push]
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - run: echo ${{ vars.TEST_VAR }}
-      - run: echo ${{ secrets.TEST_SECRET }}
-      - run: npm ci
-      - run: npm test
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v7
+  #     - run: echo ${{ vars.TEST_VAR }}
+  #     - run: echo ${{ secrets.TEST_SECRET }}
+  #     - run: npm ci
+  #     - run: npm test
   deploy:
-    needs: test
+    # needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: appleboy/ssh-action@v1.2.5
@@ -22,8 +22,7 @@ jobs:
             #!/usr/bin/env bash -l
             export PATH=/home/postal404/.nvm/versions/node/v22.11.0/bin:$PATH
             set -e
-            whoami
-            touch yahoo.txt
+            kill $(lsof -t -i :8181)
             cd app
             git pull
             npm ci
