@@ -9,3 +9,22 @@ jobs:
       - run: echo ${{ secrets.TEST_SECRET }}
       - run: npm ci
       - run: npm test
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            #!/usr/bin/env bash
+            set -e
+            whoami
+            touch yahoo.txt
+            # cd /path/to/your/project
+            # git pull origin main
+            # npm install
+
+            echo "Деплой успешно завершён!"
