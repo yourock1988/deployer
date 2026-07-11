@@ -26,7 +26,7 @@ jobs:
             cd app
             git pull
             npm ci
-            npm build
+            npm run build
             npm prune --omit=dev
             npm start
             echo "Деплой успешно завершён!"
