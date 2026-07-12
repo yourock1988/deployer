@@ -17,5 +17,11 @@ jobs:
         run: |
           export SOURCE_DATE_EPOCH=0
           docker pull ghcr.io/${{ github.repository }}/deployer:latest || true
-          docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ghcr.io/${{ github.repository }}/deployer:latest -t ghcr.io/${{ github.repository }}/deployer:latest .
+
+          docker build \
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from type=registry,ref=ghcr.io/${{ github.repository }}/deployer:latest \
+            --cache-to type=inline \
+            -t ghcr.io/${{ github.repository }}/deployer:latest .
+
           docker push ghcr.io/${{ github.repository }}/deployer:latest
