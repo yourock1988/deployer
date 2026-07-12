@@ -13,3 +13,5 @@ const PORT = 8181
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Сервер запущен на http://0.0.0.0:${PORT}`)
 })
+
+// docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ghcr.io/${{ github.repository }}/deployer:latest -t ghcr.io/${{ github.repository }}/deployer:latest .
