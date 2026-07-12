@@ -21,7 +21,7 @@ jobs:
           docker build \
             --build-arg BUILDKIT_INLINE_CACHE=1 \
             --cache-from type=registry,ref=ghcr.io/${{ github.repository }}/deployer:latest \
-            --cache-to type=inline \
+            --cache-to type=registry,ref=ghcr.io/${{ github.repository }}/deployer:latest,mode=max \
             -t ghcr.io/${{ github.repository }}/deployer:latest .
 
           docker push ghcr.io/${{ github.repository }}/deployer:latest
