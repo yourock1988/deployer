@@ -5,7 +5,7 @@ COPY --chown=node:node package*.json .
 
 
 FROM base AS deps
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 
 FROM deps AS dev
