@@ -3,7 +3,7 @@ import ms from 'ms'
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' })
-  const rand = () => Math.trunc(Math.random() * 1000002)
+  const rand = () => Math.trunc(Math.random() * 1000003)
   const time = ms(rand())
   res.end('time-' + time)
 })
