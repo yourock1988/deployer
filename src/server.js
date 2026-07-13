@@ -15,3 +15,14 @@ server.listen(PORT, '0.0.0.0', () => {
 })
 
 // docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ghcr.io/${{ github.repository }}/deployer:latest -t ghcr.io/${{ github.repository }}/deployer:latest .
+
+// - name: Build and Push
+//   run: |
+//     docker buildx build \
+//       --push \
+//       --cache-from type=registry,ref=ghcr.io/${{ github.repository }}/deployer:latest \
+//       --cache-to type=registry,ref=ghcr.io/${{ github.repository }}/deployer:latest,mode=max \
+//       -t ghcr.io/${{ github.repository }}/deployer:latest .
+
+// # - name: Set up Docker Buildx
+// #   uses: docker/setup-buildx-action@v4
