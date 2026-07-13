@@ -20,6 +20,11 @@ RUN npm run build
 RUN npm prune --omit=dev
 
 
+FROM deps AS check
+COPY --chown=node:node . .
+RUN npm test
+
+
 FROM base AS prod
 COPY --from=builder --chown=node:node /app/dist ./dist
 COPY --from=builder --chown=node:node /app/node_modules ./node_modules
