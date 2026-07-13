@@ -17,6 +17,7 @@ jobs:
 
       - name: Build and Push
         run: |
+          docker pull ghcr.io/${{ github.repository }}/deployer:latest || true
           docker build \
           --cache-from ghcr.io/${{ github.repository }}/deployer:latest \
           -t ghcr.io/${{ github.repository }}/deployer:latest .
