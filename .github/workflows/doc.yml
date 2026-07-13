@@ -16,11 +16,8 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build and Push
-        env:
-          DOCKER_BUILDKIT: 1
         run: |
-          docker pull ghcr.io/${{ github.repository }}/deployer:latest || true
           docker build \
-          --cache-from=ghcr.io/${{ github.repository }}/deployer:latest \
+          --cache-from ghcr.io/${{ github.repository }}/deployer:latest \
           -t ghcr.io/${{ github.repository }}/deployer:latest .
           docker push ghcr.io/${{ github.repository }}/deployer:latest
