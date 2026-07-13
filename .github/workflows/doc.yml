@@ -4,45 +4,24 @@ jobs:
   doc-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
-      # - run: pwd
+      - uses: node -v
 
-      # - run: git status
+      - uses: npm -v
 
-      # - run: docker -v
+      - uses: docker/setup-buildx-action@v4
 
-      - run: docker images
-
-      # - name: Login to GHCR
-      #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-      # Set up Buildx is REQUIRED to use GitHub Actions cache backends
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
+      - uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and Push Image
-        uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: .
           push: true
           tags: ghcr.io/${{ github.repository }}/deployer:latest
-          # Fetch cache from GitHub Actions backend
           cache-from: type=gha
-          # Export cache back to GitHub Actions backend (mode=max catches intermediate stages)
           cache-to: type=gha,mode=max
-
-      # - name: Build and Push
-      #   run: |
-      #     docker pull ghcr.io/${{ github.repository }}/deployer:latest || true
-      #     docker build \
-      #     --cache-from ghcr.io/${{ github.repository }}/deployer:latest \
-      #     -t ghcr.io/${{ github.repository }}/deployer:latest .
-      #     docker push ghcr.io/${{ github.repository }}/deployer:latest
