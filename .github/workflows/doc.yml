@@ -4,6 +4,10 @@ jobs:
   doc-build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 26
+
       - uses: actions/checkout@v7
 
       - run: node -v
@@ -17,6 +21,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v7
+        with:
+          context: .
+          tags: ghcr.io/${{ github.repository }}/deployer:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - uses: docker/build-push-action@v7
         with:
